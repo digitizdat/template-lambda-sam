@@ -1,5 +1,5 @@
 {
-  "application_name": "TestProject-Lambda",
+  "application_name": "testproject-lambda",
   "deployment_bucket": "testproject-lambda-deployment-88f32j893f",
   "aws_region": "us-east-2"
 }

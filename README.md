@@ -1,4 +1,7 @@
-# testproject-lambda-template
+# lambda-template-sam
+
+Provide a basic skeleton for a Lambda function with a SAM template and a
+Makefile.
 
 To use this repo
 
