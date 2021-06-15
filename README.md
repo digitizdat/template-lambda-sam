@@ -6,7 +6,6 @@ Makefile.
 To use this repo
 
   1. Clone this repo
-  1. Change the cookiecutter.json file to suit your needs
   1. Install cookiecutter, if you don't already have it.
 
         `pip install cookiecutter`
@@ -25,3 +24,7 @@ this directory and push it to a blank repo created in GitHub or whatever.
       git branch -M main
       git remote add origin https://github.com/digitizdat/my-new-project.git
       git push -u origin main
+
+You can deploy the sample Lambda function without modification. If your environment has current AWS credentials in it, simply run `make all`.
+
+      make all
