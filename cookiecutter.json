@@ -1,5 +1,6 @@
 {
   "application_name": "testproject-lambda",
+  "alias": "live",
   "deployment_bucket": "testproject-lambda-deployment-88f32j893f",
   "aws_region": "us-east-2"
 }

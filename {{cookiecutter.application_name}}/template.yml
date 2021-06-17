@@ -7,7 +7,13 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: {{cookiecutter.application_name}}
-      AutoPublishAlias: live
+      AutoPublishAlias: {{cookiecutter.alias}}
+      DeploymentPreference:
+        Type: Linear10PercentEvery1Minute
+        Hooks:
+          PreTraffic: TestRunner-{{cookiecutter.application_name}}-BeforeAllowTraffic
+        Role: !GetAtt CodeDeployRole.Arn
+
       Handler: lambda_function.lambda_handler
       Runtime: python3.8
       CodeUri: .
@@ -24,3 +30,32 @@ Resources:
       Policies:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
         - arn:aws:iam::aws:policy/AWSXrayWriteOnlyAccess
+
+  CodeDeployRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codedeploy.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path: /
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSCodeDeployRoleForLambda 
+      Policies:
+        -
+          PolicyName: root
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              -
+                Effect: Allow
+                Action:
+                  - 'lambda:InvokeFunction'
+                Resource:
+                  - !Sub 'arn:aws:lambda:*:${AWS::AccountId}:function:TestRunner-{{cookiecutter.application_name}}-BeforeAllowTraffic'
+
