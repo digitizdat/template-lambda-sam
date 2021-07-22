@@ -1,7 +1,6 @@
 # lambda-template-sam
 
-Provide a basic skeleton for a Lambda function with a SAM template and a
-Makefile.
+[Cookiecutter](https://github.com/cookiecutter/cookiecutter) template for a basic [Lambda](https://aws.amazon.com/lambda/) function with a [SAM](https://aws.amazon.com/serverless/sam/) template and a [Makefile](https://www.gnu.org/software/make/manual/make.html).
 
 To use this repo
 
